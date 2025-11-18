@@ -1,10 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
 import { ReceitasService } from "../../shared/services/api/receitas/ReceitasService";
 import styles from "./Home.module.css"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Home = () => {
-    // Desestruturando: pegamos os dados, o status de carregamento e se deu erro
+    function handleDelete(id: string) {
+        ReceitasService.deleteById(id)
+        console.log(`Receita de id ${id} deletada com sucesso!`)
+    }
+
+    const navigate = useNavigate()
+    
     const { data, isLoading, isError } = useQuery({
         queryKey: ['receitas'],
         queryFn: ReceitasService.getAll
@@ -27,6 +33,10 @@ export const Home = () => {
                 <p>{receita.descricao}</p>
                 <strong>R${receita.preco}</strong>
 
+                <div className={styles.botoes}>
+                    <button onClick={() => handleDelete(receita.id)}>Deletar Receita</button>
+                    <button onClick={() => navigate(`/editar/${receita.id}`)}>Editar Receita</button>
+                </div>
                 
                 </div>
             )}

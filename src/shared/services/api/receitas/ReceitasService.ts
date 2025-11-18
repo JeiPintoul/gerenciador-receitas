@@ -21,7 +21,7 @@ const updateById = async (id: number, dataToUpdate: IReceita): Promise<IReceita>
     return data
 }
 
-const deleteById = async (id: number): Promise<undefined> => {
+const deleteById = async (id: string): Promise<undefined> => {
     await Api().delete(`/receitas/${id}`)
     return undefined
 }

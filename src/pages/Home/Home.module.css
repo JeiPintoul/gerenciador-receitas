@@ -38,3 +38,9 @@
 .botao:hover {
   background-color: #d35400; /* Escurece um pouco quando passa o mouse */
 }
+
+.botoes {
+  display: flex;
+  position: ;
+  gap: 10px;
+}

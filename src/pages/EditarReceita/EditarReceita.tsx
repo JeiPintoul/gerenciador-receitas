@@ -13,7 +13,7 @@ const receitaSchema = z.object({
     imagem: z.url("O envio precisa ser uma url.")
 })
 
-export function NovaReceita () {
+export function EditarReceita () {
     const navigate = useNavigate()
 
     const { register, handleSubmit, formState: { errors } } = useForm({

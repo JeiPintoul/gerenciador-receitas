@@ -1,5 +1,5 @@
 export interface IReceita {
-    id: number;
+    id: string;
     nome: string;
     preco: number;
     descricao: string;
