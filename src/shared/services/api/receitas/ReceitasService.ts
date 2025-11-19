@@ -6,7 +6,7 @@ const getAll = async (): Promise<IReceita[]> => {
     return data
 }
 
-const getById = async (id: number): Promise<IReceita> => {
+const getById = async (id?: string): Promise<IReceita> => {
     const { data }  = await Api().get(`/receitas/${id}`)
     return data
 }
@@ -16,7 +16,7 @@ const create = async (dataToCreate: Omit<IReceita, 'id'>): Promise<IReceita> => 
     return data
 }
 
-const updateById = async (id: number, dataToUpdate: IReceita): Promise<IReceita> => {
+const updateById = async (id?: string, dataToUpdate?: IReceita): Promise<IReceita> => {
     const { data } = await Api().put(`/receitas/${id}`, dataToUpdate)
     return data
 }

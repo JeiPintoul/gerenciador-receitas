@@ -1,3 +1,11 @@
+.container {
+  background-color: rgb(155, 159, 184);
+  min-height: 100vh;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
 .card {
     border: 1px solid #ccc;      /* Uma borda cinza fina */
     border-radius: 20px;          /* Cantos arredondados */
@@ -8,6 +16,12 @@
     display: flex;               /* Organiza os itens internos */
     flex-direction: column;      /* Empilha um embaixo do outro */
     gap: 1px;                   /* Espaço entre os itens dentro do card */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px); /* Move 10 pixels para CIMA (Y negativo) */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* Aumenta a sombra para parecer que subiu */
 }
 
 .imagem {
@@ -24,23 +38,59 @@
 }
 
 .botao {
-  background-color: #e67e22; /* Um laranja apetitoso */
+  background-color: #474444; /* Um laranja apetitoso */
   color: white;              /* Texto branco */
   padding: 10px 20px;        /* Espaço interno: 10px vertical, 20px horizontal */
   text-decoration: none;     /* Remove o sublinhado padrão de link */
   border-radius: 5px;        /* Bordas arredondadas */
-    font-weight: bold;
+  font-weight: bold;
   display: inline-block;     /* Permite que o link respeite as margens */
   margin-bottom: 20px;       /* Empurra a lista de cards para baixo */
   transition: background 0.3s; /* Um charme suave ao passar o mouse */
 }
 
 .botao:hover {
-  background-color: #d35400; /* Escurece um pouco quando passa o mouse */
+  background-color: black; /* Escurece um pouco quando passa o mouse */
 }
 
 .botoes {
   display: flex;
-  position: ;
   gap: 10px;
+  text-align: center;
+}
+
+.erro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20%;
+}
+
+.titulo {
+  display: flex;
+  justify-content: center;
+}
+
+/* Estilo base (forma) para TODOS os botões de ação */
+.btnAcao {
+  border: none;
+  padding: 5px 10px;
+  margin-top: 8px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  color: black;
+  transition: opacity 0.2s;
+}
+
+.btnAcao:hover {
+  opacity: 0.8;
+}
+
+.btnDeletar {
+  background-color: #d35400;
+}
+
+.btnEditar {
+  background-color: #3498db
 }

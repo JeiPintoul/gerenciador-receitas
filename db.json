@@ -1,20 +1,20 @@
 {
   "receitas": [
     {
-      "id": "1",
       "nome": "Bolo de Chocolate",
-      "preco": 24,
       "descricao": "Um bolo de chocolate simples com cobertura cremosa.",
+      "preco": 24,
       "receita": "Misture tudo e asse por 40min.",
-      "imagem": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=500&q=60"
+      "imagem": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=500&q=60",
+      "id": "1"
     },
     {
-      "id": "2",
       "nome": "Espaguete à Carbonara",
-      "preco": 35,
       "descricao": "Massa clássica italiana com ovos, queijo e bacon.",
+      "preco": 35,
       "receita": "Cozinhe o macarrão, misture ovos e queijo, adicione bacon frito.",
-      "imagem": "https://images.unsplash.com/photo-1612874742237-98280d839cf4?auto=format&fit=crop&w=500&q=60"
+      "imagem": "https://images.unsplash.com/photo-1612874742237-98280d839cf4?auto=format&fit=crop&w=500&q=60",
+      "id": "2"
     },
     {
       "id": "3",
@@ -25,12 +25,12 @@
       "imagem": "https://images.unsplash.com/photo-1588137372308-15f75323ca8d?auto=format&fit=crop&w=500&q=60"
     },
     {
-      "id": "4",
       "nome": "Smoothie de Manga",
-      "preco": 15,
       "descricao": "Bebida refrescante e tropical feita com mangas maduras.",
+      "preco": 22,
       "receita": "Bata manga, iogurte e gelo no liquidificador.",
-      "imagem": "https://images.unsplash.com/photo-1623065422902-30a2d299bbe4?auto=format&fit=crop&w=500&q=60"
+      "imagem": "https://images.unsplash.com/photo-1623065422902-30a2d299bbe4?auto=format&fit=crop&w=500&q=60",
+      "id": "4"
     },
     {
       "id": "5",
