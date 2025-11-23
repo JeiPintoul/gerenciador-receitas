@@ -1,25 +1,25 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { ReceitasService } from "../../shared/services/api/receitas/ReceitasService";
 import styles from "./Home.module.css"
 import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import type { IReceita } from "../../interfaces/IReceita";
+import { ModalReceita } from "./ModalReceita";
+import { useAllReceitas, useDeleteReceita } from "../../hooks/useReceitas";
 
 export const Home = () => {
-    const queryClient = useQueryClient()
+    const navigate = useNavigate()
 
-    const handleDelete = async (id: string) => {
+    const { data, isLoading, isError } = useAllReceitas()
+
+    const { mutate: deletarReceita } = useDeleteReceita()
+
+    const [receitaSelecionada, setReceitaSelecionada] = useState<IReceita | null>(null)
+
+    const handleDelete = (id: string) => {
         if (window.confirm("Deseja mesmo deletar esta receita?")) {
-            await ReceitasService.deleteById(id)
-            queryClient.invalidateQueries({queryKey: ['receitas']})
+            deletarReceita(id)
             console.log(`Receita de id ${id} deletada com sucesso!`)
         }
     }
-
-    const navigate = useNavigate()
-    
-    const { data, isLoading, isError } = useQuery({
-        queryKey: ['receitas'],
-        queryFn: ReceitasService.getAll
-    });
 
     if (isLoading) return <p className={styles.erro}>Carregando...</p>;
     if (isError) return <p className={styles.erro}>Ops, algo deu errado!</p>;
@@ -35,7 +35,7 @@ export const Home = () => {
 
             <div className={styles.lista}>
                 {data?.map((receita) =>
-                    <div key={receita.id} className={styles.card}>
+                    <div key={receita.id} className={styles.card} onClick={() => setReceitaSelecionada(receita)}>
                     
                         <img src={receita.imagem} className={styles.imagem} />
 
@@ -43,15 +43,28 @@ export const Home = () => {
                         <p>{receita.descricao}</p>
                         <strong>R${receita.preco}</strong>
 
-                        <div className={styles.botoes}>
-                            <button className={`${styles.btnAcao} ${styles.btnDeletar}`} onClick={() => handleDelete(receita.id)}>Deletar Receita</button>
-                            <button className={`${styles.btnAcao} ${styles.btnEditar}`} onClick={() => navigate(`/editar/${receita.id}`)}>Editar Receita</button>
+                        <div className={styles.botoes} onClick={(e) => {e.stopPropagation()}}>
+                            <button
+                                className={`${styles.btnAcao}
+                                ${styles.btnDeletar}`}
+                                onClick={() => handleDelete(receita.id)}>
+                                Deletar Receita
+                            </button>
+
+                            <button
+                                className={`${styles.btnAcao} ${styles.btnEditar}`}
+                                onClick={() => navigate(`/editar/${receita.id}`)}>
+                                Editar Receita
+                            </button>
                         </div>
                 
                     </div>
                 )}
             </div>
 
+            { receitaSelecionada &&
+                (<ModalReceita receita={receitaSelecionada} aoFechar={() => setReceitaSelecionada(null)}/>)
+            }
         </div>
     );
 };

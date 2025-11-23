@@ -1,33 +1,30 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { z } from 'zod'
-import type { IReceita } from '../../shared/interfaces/IReceita';
-import { ReceitasService } from '../../shared/services/api/receitas/ReceitasService';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
-
-const receitaSchema = z.object({
-    nome: z.string().min(1, "Precisa ter um nome válido."),
-    descricao: z.string().min(10, "Descrição precisa ser preenchida."),
-    preco: z.number().nonnegative(),
-    receita: z.string().min(10, "Precisa ser uma receita válida."),
-    imagem: z.url("O envio precisa ser uma url.")
-})
+import { createReceitaSchema as editReceitaSchema } from '../NovaReceita/NovaReceita';
+import type { CreateReceitaFormData as EditReceitaFormData } from '../NovaReceita/NovaReceita';
+import { useReceitaById, useUpdateReceita } from '../../hooks/useReceitas';
 
 export function EditarReceita () {
-    const { id } = useParams()
-
-    const { data, isLoading } = useQuery({
-        queryKey: ['receitas', id],
-        queryFn: () => ReceitasService.getById(id)
-    })
+    const { id } = useParams<{ id: string }>()
 
     const navigate = useNavigate()
 
-    const { register, handleSubmit, reset, formState: { errors } } = useForm({
-        resolver: zodResolver(receitaSchema)
+    const { mutate: atualizarReceita } = useUpdateReceita()
+
+    const { data, isLoading, isError } = useReceitaById(id!)
+
+    const { register, handleSubmit, reset, formState: { errors } } = useForm<EditReceitaFormData>({
+        resolver: zodResolver(editReceitaSchema)
     })
+
+    const onSubmit = (dadosAtualizados: EditReceitaFormData) => {
+        if (!id) return
+        atualizarReceita({...dadosAtualizados, id})
+        alert("Receita Atualizada!")
+        navigate("/")
+    }
 
     useEffect(() => {
         if (data) {
@@ -35,13 +32,8 @@ export function EditarReceita () {
         }
     }, [data, reset])
 
-    const onSubmit = async (dadosAtualizados: any) => {
-        await ReceitasService.updateById(id, dadosAtualizados)
-        alert("Receita Atualizada!")
-        navigate("/")
-    }
-
     if (isLoading) return <p>Carregando dados da receita...</p>
+    if (isError || Object.keys(errors).length > 0) return <h1>Erro na busca da receita. Tente novamente.</h1>
 
     return (
         <>

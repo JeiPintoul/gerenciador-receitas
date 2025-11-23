@@ -1,0 +1,51 @@
+.container {
+    background-color: rgb(155, 159, 184);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.botaoVoltar {
+    display: inline-block;
+    display: flex;
+    justify-content: center;
+    padding: 20px 20px;
+    background-color: brown;
+    color: white;
+    text-decoration: none;
+    width: 8px;
+    height: 8px;
+    margin: auto;
+    border-radius: 20px;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    margin: auto;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: stretch;
+    width: 90%;
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+/* inputs/textarea ocupam toda a largura do container */
+.input input,
+.input textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px 10px;
+    font-size: 14px;
+}
+
+/* ajuste opcional para textarea */
+.input textarea {
+    min-height: 120px;
+    resize: vertical;
+}
