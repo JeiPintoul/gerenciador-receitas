@@ -4,6 +4,7 @@ import { useState } from "react";
 import type { IReceita } from "../../interfaces/IReceita";
 import { ModalReceita } from "./ModalReceita";
 import { useAllReceitas, useDeleteReceita } from "../../hooks/useReceitas";
+import { useCarrinho } from "../../store/useCarrinho";
 
 export const Home = () => {
     const navigate = useNavigate()
@@ -13,6 +14,9 @@ export const Home = () => {
     const { mutate: deletarReceita } = useDeleteReceita()
 
     const [receitaSelecionada, setReceitaSelecionada] = useState<IReceita | null>(null)
+
+    const itens = useCarrinho(state => state.itens)
+    const limparCarrinho = useCarrinho(state => state.limparCarrinho)
 
     const handleDelete = (id: string) => {
         if (window.confirm("Deseja mesmo deletar esta receita?")) {
@@ -29,6 +33,10 @@ export const Home = () => {
 
             <div>
                 <h1 className={styles.titulo}>Cardápio</h1>
+                <h2>Carrinho: {itens.length}</h2>
+
+                <button onClick={() => limparCarrinho()}>Limpar Carrinho</button>
+
             </div>
 
             <Link to="/nova" className={styles.botao}>Adicionar Nova Receita</Link>
@@ -63,7 +71,7 @@ export const Home = () => {
             </div>
 
             { receitaSelecionada &&
-                (<ModalReceita receita={receitaSelecionada} aoFechar={() => setReceitaSelecionada(null)}/>)
+                (<ModalReceita receita={receitaSelecionada} aoFechar={() => setReceitaSelecionada(null)} />)
             }
         </div>
     );

@@ -1,9 +1,13 @@
 import type { IReceita } from "../../interfaces/IReceita";
 import styles from "./ModalReceita.module.css"
 import { useScrollBlock } from "../../hooks/useScrollBlock";
+import { useCarrinho } from "../../store/useCarrinho";
+
 
 export function ModalReceita(props: {receita: IReceita, aoFechar: () => void}) {
     useScrollBlock()
+    
+    const adicionarCarrinho = useCarrinho(state => state.adicionarItem)
 
     return (
         <>
@@ -20,6 +24,10 @@ export function ModalReceita(props: {receita: IReceita, aoFechar: () => void}) {
 
                         <button onClick={() => {props.aoFechar()}}>
                             Fechar
+                        </button>
+
+                        <button onClick={() => {adicionarCarrinho(props.receita), alert('Prato adicionado ao Carrinho com sucesso!')}}>
+                            Adicionar ao Carrinho
                         </button>
                     </div>
                 </div>
