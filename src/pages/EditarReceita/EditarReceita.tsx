@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { createReceitaSchema as editReceitaSchema } from '../NovaReceita/NovaReceita';
 import type { CreateReceitaFormData as EditReceitaFormData } from '../NovaReceita/NovaReceita';
 import { useReceitaById, useUpdateReceita } from '../../hooks/useReceitas';
+import styles from './EditarReceita.module.css'
 
 export function EditarReceita () {
     const { id } = useParams<{ id: string }>()
@@ -36,22 +37,23 @@ export function EditarReceita () {
     if (isError || Object.keys(errors).length > 0) return <h1>Erro na busca da receita. Tente novamente.</h1>
 
     return (
-        <>
-            <div>
-                <h1>Editar Receita</h1>
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <input placeholder="Nome" {...register("nome")}/>
-                    <input placeholder="Descrição" {...register("descricao")} />
-                    <input type="number" placeholder="Preço" {...register("preco", { valueAsNumber: true })} />
-                    <input type="url" placeholder="URL da Imagem" {...register("imagem")} />
-                    <textarea placeholder='Receita' {...register("receita")} />
-                    <button type="submit">Salvar</button>
-                </form>
-            </div>
+        <div className={styles.container}>
+            <h1 className={styles.title}>Editar Receita</h1>
 
             <div>
-                <button onClick={() => navigate('/')}>Voltar</button>
+                <button className={styles.botaoVoltar} onClick={() => navigate('/')}>Voltar</button>
             </div>
-        </>
+
+            <form className={styles.input} onSubmit={handleSubmit(onSubmit)}>
+                <input placeholder="Nome" {...register("nome")}/>
+                <input placeholder="Descrição" {...register("descricao")} />
+                <input type="number" placeholder="Preço" {...register("preco", { valueAsNumber: true })} />
+                <input type="url" placeholder="URL da Imagem" {...register("imagem")} />
+                <textarea placeholder='Receita' {...register("receita")} />
+                <button type="submit">Salvar</button>
+            </form>
+
+
+        </div>
     );
 }

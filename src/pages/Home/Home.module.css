@@ -7,27 +7,27 @@
 }
 
 .card {
-    border: 1px solid #ccc;      /* Uma borda cinza fina */
-    border-radius: 20px;          /* Cantos arredondados */
-    padding: 16px;               /* Espaço interno (respiro) */
-    margin: 10px 0;              /* Espaço externo entre os cards */
-    background-color: #ccc;      /* Fundo branco */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Uma sombra leve */
-    display: flex;               /* Organiza os itens internos */
-    flex-direction: column;      /* Empilha um embaixo do outro */
-    gap: 1px;                   /* Espaço entre os itens dentro do card */
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 16px;
+    margin: 10px 0;
+    background-color: #ccc;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
-    transform: translateY(-10px); /* Move 10 pixels para CIMA (Y negativo) */
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* Aumenta a sombra para parecer que subiu */
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 
 .imagem {
-    width: 100%;                 /* A imagem ocupa toda a largura */
-    height: 200px;               /* Altura fixa para todas ficarem iguais */
-    object-fit: cover;           /* Corta a imagem para não distorcer */
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
     border-radius: 4px;
 }
 
@@ -38,19 +38,19 @@
 }
 
 .botao {
-  background-color: #474444; /* Um laranja apetitoso */
-  color: white;              /* Texto branco */
-  padding: 10px 20px;        /* Espaço interno: 10px vertical, 20px horizontal */
-  text-decoration: none;     /* Remove o sublinhado padrão de link */
-  border-radius: 5px;        /* Bordas arredondadas */
+  background-color: #474444;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
   font-weight: bold;
-  display: inline-block;     /* Permite que o link respeite as margens */
-  margin-bottom: 20px;       /* Empurra a lista de cards para baixo */
-  transition: background 0.3s; /* Um charme suave ao passar o mouse */
+  display: inline-block;
+  margin-bottom: 20px;
+  transition: background 0.3s;
 }
 
 .botao:hover {
-  background-color: black; /* Escurece um pouco quando passa o mouse */
+  background-color: black;
 }
 
 .botoes {
@@ -71,7 +71,6 @@
   justify-content: center;
 }
 
-/* Estilo base (forma) para TODOS os botões de ação */
 .btnAcao {
   border: none;
   padding: 5px 10px;

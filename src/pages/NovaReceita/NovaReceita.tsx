@@ -4,6 +4,7 @@ import { z } from 'zod'
 import { ReceitasService } from '../../api/receitas/ReceitasService';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './NovaReceita.module.css'
+import { AiOutlineArrowLeft } from 'react-icons/ai'
 import { useQueryClient } from '@tanstack/react-query';
 
 export const createReceitaSchema = z.object({
@@ -35,7 +36,7 @@ export function NovaReceita () {
         <>
             <div className={styles.container}>
                 <h1 className={styles.title}>Adicionar Nova Receita</h1>
-                <Link className={styles.botaoVoltar} to='/'>Voltar</Link>
+                <Link className={styles.botaoVoltar} to='/'><AiOutlineArrowLeft className={styles.icon} />Voltar</Link>
 
                 <form className={styles.input} onSubmit={handleSubmit(createReceita)}>
                     <input placeholder="Nome" {...register("nome")}/>
@@ -43,7 +44,7 @@ export function NovaReceita () {
                     <input type="number" placeholder="Preço" {...register("preco", { valueAsNumber: true })} />
                     <input type="url" placeholder="URL da Imagem" {...register("imagem")} />
                     <textarea placeholder='Receita' {...register("receita")} />
-                    <button type="submit">Salvar</button>
+                    <button type="submit" className={styles.salvar}>Salvar</button>
                 </form>
             </div>
         </>

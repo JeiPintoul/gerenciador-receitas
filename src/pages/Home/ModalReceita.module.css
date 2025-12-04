@@ -18,4 +18,34 @@
     max-width: 500px;
     max-height: 80vh;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.botoes {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    justify-content: flex-start;
+    margin-top: 12px;
+}
+
+.botoes button {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    background: #3b6ea5;
+    color: #fff;
+}
+
+.botoes button:first-child {
+    background: #777;
+}
+
+.icon {
+    display: inline-flex;
+    margin-right: 8px;
+    vertical-align: middle;
 }

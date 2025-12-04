@@ -5,17 +5,47 @@
 }
 
 .botaoVoltar {
-    display: inline-block;
     display: flex;
+    align-items: center;
     justify-content: center;
-    padding: 20px 20px;
-    background-color: brown;
-    color: white;
+
+    width: fit-content;
+    padding: 8px 22px;
+
+    background-color: #8b2d2d;
+    color: #fff;
     text-decoration: none;
-    width: 8px;
-    height: 8px;
-    margin: auto;
-    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    margin: 12px auto;
+    border-radius: 9999px;
+
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1;
+    box-sizing: border-box;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+    transition: transform 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
+}
+
+.icon {
+    display: inline-flex;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.botaoVoltar:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.14);
+}
+
+.botaoVoltar:active {
+    transform: translateY(0);
+}
+
+.botaoVoltar:focus-visible {
+    outline: 3px solid rgba(255,255,255,0.18);
+    outline-offset: 3px;
 }
 
 .title {
@@ -35,7 +65,6 @@
     margin: 0 auto;
 }
 
-/* inputs/textarea ocupam toda a largura do container */
 .input input,
 .input textarea {
     width: 100%;
@@ -44,8 +73,33 @@
     font-size: 14px;
 }
 
-/* ajuste opcional para textarea */
 .input textarea {
     min-height: 120px;
     resize: vertical;
+}
+
+.salvar {
+    display: block;
+    width: 100%;
+    padding: 10px 12px;
+    margin-top: 6px;
+    background-color: #3b6ea5;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.salvar:hover {
+    background-color: #335f8b;
+}
+
+.salvar:active {
+    transform: translateY(1px);
+}
+
+.salvar:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
